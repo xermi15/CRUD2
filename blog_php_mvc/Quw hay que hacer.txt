@@ -1,0 +1,28 @@
+insertar nuevo post
+
+- tenemos que ir a routes i el controller tal
+- luego tengo que ir al controller del post y anadir el nuevo metodo dentro de la classe (post controller)
+- Esto lo que va a hacer es llamar directamente a una vista (porque no necesitas info de la base de datos, te llama a un html)
+- dentro de views/posts tendremos que crear la vista
+- dentro del routes tendremos el metodo mostrar y luego el anadir
+
+crear: 
+- mostrar.php (en html) -> en su action llamara a 
+- posts_controller.php
+public function(mostrarInsertar(){
+	NO Modelo
+	Vista
+	require_once('views/posts/mostrarInsertar.php');
+}
+public function(mostrarInsertar(){
+	id = $_POST['id]
+	...
+	POst::insert()
+}
+
+- posts.php
+public static function insertar(Post post){
+	insercion en bbdd
+	header(Locaation:'?controller = post&action =mostrarInsertar)
+	devolverlo a la pagina de insertar (o al index)
+}
