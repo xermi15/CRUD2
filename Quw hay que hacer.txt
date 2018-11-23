@@ -35,3 +35,5 @@ https://campus.copernic.cat/pluginfile.php/98228/mod_resource/content/12/URLsAmi
 https://campus.copernic.cat/pluginfile.php/97969/mod_resource/content/11/Tutorial%20Blog%20PHP%20MVC.pdf
 
 https://campus.copernic.cat/mod/url/view.php?id=65352
+
+https://campus.copernic.cat/mod/url/view.php?id=82210
