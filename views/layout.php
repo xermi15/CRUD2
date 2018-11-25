@@ -6,14 +6,13 @@
 
     <body>
         <header>
-            <a href='/DAW2/M07UF2/mvc'>Home</a>
-            <a href='?controller=posts&action=index'>Posts</a>
+            <a href='<?php echo constant('URL'); ?>'>Inici</a>
+            <a href='<?php echo constant('URL'); ?>posts/index'>Posts</a>
         </header>
         <?php require_once('routes.php'); ?>
         <footer>
-            by xermi15
-            v0.3.1
+            by xermi15     v0.4.0
         </footer>
     </body>
 
-    </html>
+</html>
