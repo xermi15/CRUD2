@@ -21,11 +21,10 @@
                     <td><?php echo $post->date_create; ?></td>
                     <td><?php echo $post->date_modification; ?></td>
                     <td>
-                        <a href='<?php echo constant('URL'); ?>posts/show/<?php echo $post->id; ?>'>Llegir Posts</a>
-<!--
-                        <a href='<?php echo constant('URL'); ?>posts/update/<?php echo $post->id; ?>'>Update</a>
-                        <a href='<?php echo constant('URL'); ?>posts/delete/<?php echo $post->id; ?>'>Delete</a>
--->
+                        <a href='<?php echo constant('URL'); ?>posts/show/<?php echo $post->id; ?>'>Llegir</a>
+                        <a href='<?php echo constant('URL'); ?>posts/update/<?php echo $post->id; ?>'>Modificar</a>
+                        <a href='<?php echo constant('URL'); ?>posts/delete/<?php echo $post->id; ?>'>Eliminar</a>
+
                     </td>
                 </tr>
             <?php }?>

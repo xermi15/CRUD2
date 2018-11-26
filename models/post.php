@@ -11,10 +11,10 @@ class Post {
     public $date_create;
     public $date_modification;
 
-    public function __construct($id, $author, $title, $content, $image, $date_create, $date_modification,) {
+    public function __construct($id, $author, $title, $content, $image, $date_create, $date_modification) {
         $this->id = $id;
         $this->author = $author;
-        $this->title = $title
+        $this->title = $title;
         $this->content = $content;
         $this->image = $image;
         $this->date_create = $date_create;
@@ -28,7 +28,7 @@ class Post {
 
         // creamos una lista de objectos post y recorremos la respuesta de la consulta
         foreach($req->fetchAll() as $post) {
-            $list[] = new Post($post['id'], $post['author'], $post['title'],$post['content'], $post['image'], $post['date_create'], $post['date_modification'],);
+            $list[] = new Post($post['id'], $post['author'], $post['title'],$post['content'], $post['image'], $post['date_create'], $post['date_modification']);
         }
         return $list;
     }
@@ -44,10 +44,10 @@ class Post {
         $req->execute(array('id' => $id));
         $post = $req->fetch();
 
-        return new Post($post['id'], $post['author'], $post['title'],$post['content'], $post['image'], $post['date_create'], $post['date_modification'],);
+        return new Post($post['id'], $post['author'], $post['title'],$post['content'], $post['image'], $post['date_create'], $post['date_modification']);
     }
 
-    public static function insert($title, $author, $content, $image, $date_create, $date_modification {
+    public static function insert($title, $author, $content, $image, $date_create, $date_modification) {
 
         $db = Db::getInstance();
         $req = $db->prepare('INSERT INTO posts SET author = :author, title = :title, content = :content, image = :image, date_create = :date_create, date_modification = :date_modification');
@@ -136,5 +136,6 @@ class Post {
                 $result_message.="</div>";
             }
         }
+    }
 }
 ?>

@@ -22,12 +22,12 @@
         public function insert($message) {
             //Si el post es crea correctament
             if ($message == "success") {
-                echo "<div class="success">El post s'ha creat correctament</div>";
+                echo "<div>El post s'ha creat correctament</div>";
             }
 
             //Si no es pot crear, mostra error
             else if ($message == "error") {
-                echo "<div class="error">Error: segur que aixi no es creen els posts...</div>";
+                echo "<div>Error: segur que aixi no es creen els posts...</div>";
             }
 
             require_once 'views/posts/insert.php';

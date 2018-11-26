@@ -2,14 +2,15 @@
 RewriteEngine On
 
 # Indicamos el directorio raíz del proyecto.
-RewriteBase /mvc
+# RewriteBase /mvc
+  RewriteBase /DAW2/M07UF2/mvc
 
 # Las 3 líneas siguientes se encargan de no pasar al parámetro
-url los directorios y ficheros externos requeridos.
+# url los directorios y ficheros externos requeridos.
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
 # Lee de la url los parámetros y pasa al index.php una variable
-llamada url con el contenido mediante el método GET.
+# llamada url con el contenido mediante el método GET.
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA] 
