@@ -1,10 +1,6 @@
 <?php
  require_once('connection.php');
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
  define('URL', 'http://localhost/DAW2/M07UF2/mvc/');
 
     if(isset($_GET['url'])){
