@@ -26,7 +26,7 @@
         <?php require_once('routes.php'); ?>
 
         <footer>
-            by xermi15     v0.4.3
+            by xermi15     v0.5.0
         </footer>
     </body>
 

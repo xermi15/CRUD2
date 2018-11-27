@@ -68,9 +68,60 @@ class Post {
 
         } else {
 
-            // Error a linsertar
+            // Error a l'insertar
             header('Location: '.constant('URL')."posts/insert/error");
         }
+    }
+
+    public static function update($id, $title, $author, $content, $image, $date_modification) {
+        $db = Db::getInstance();
+
+        //En el cas de que no canviem la imatge del post
+        if (empty($image)) {
+            $req = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, date_modification = :date_modification WHERE id = :id');
+            $data = array(
+                ":id" => htmlspecialchars(strip_tags($id)),
+                ":title" => htmlspecialchars(strip_tags($title)),
+                ":author" => htmlspecialchars(strip_tags($author)),
+                ":content" => htmlspecialchars(strip_tags($content)),
+                ":date_modification" => htmlspecialchars(strip_tags($date_modification))
+            );
+
+            if($req->execute($data)){
+                // Actualització correcte
+                header('Location: '.constant('URL')."posts/index");
+            }else{
+                // Error en actualitzzar
+                return call('posts', 'error', "Error: no s'ha pogut actualitzar el post...");
+            }
+        }
+        else {
+            $req = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, image = :image, date_modification = :date_modification WHERE id = :id');
+            $data = array(
+                ":id" => htmlspecialchars(strip_tags($id)),
+                ":title" => htmlspecialchars(strip_tags($title)),
+                ":author" => htmlspecialchars(strip_tags($author)),
+                ":content" => htmlspecialchars(strip_tags($content)),
+                ":image" => htmlspecialchars(strip_tags($image)),
+                ":date_modification" => htmlspecialchars(strip_tags($date_modification))
+            );
+
+            if($req->execute($data)){
+                // Actualització correcte
+                Post::uploadImage($image);
+                header('Location: '.constant('URL')."posts/index");
+            }else{
+                // Error en actualitzzar
+                return call('posts', 'error', "Error: no s'ha pogut actualitzar el post..");
+            }
+        }
+    }
+
+    public static function delete($id) {
+        $db = Db::getInstance();
+        $req = $db->prepare('DELETE FROM posts WHERE id = :id');
+        $data = array(":id" => htmlspecialchars(strip_tags($id)));
+        return $req->execute($data);
     }
 
     private static function uploadImage($image) {

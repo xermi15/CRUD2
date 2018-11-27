@@ -19,6 +19,7 @@
             require_once('views/posts/show.php');
         }
 
+        //Retorna la vista insertar post
         public function insert($message) {
             //Si el post es crea correctament
             if ($message == "success") {
@@ -33,6 +34,7 @@
             require_once 'views/posts/insert.php';
         }
 
+        //Inserta el nou post a la base de dades
         public function newPost() {
             $title = $_POST["title"];
             $author = $_POST["author"];
@@ -53,6 +55,54 @@
             }
         }
 
+        //Retorna la vista update (modificar) d'un post
+        public function update($id) {
+            if (empty($id)) {
+                return call('posts', 'error', "Error: no s'ha seleccionat cap post...");
+            }
+
+            $post = Post::find($id);
+            require_once 'views/posts/update.php';
+        }
+
+        //Inserta a la base de dades les modificacions d'un post
+        public function updatePost() {
+
+            $id = $_POST["id"];
+            $title = $_POST["title"];
+            $author = $_POST["author"];
+            $content = $_POST["content"];
+            $image=!empty($_FILES["image"]["name"])
+                ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : null;
+            $date_modification = date('Y-m-d H:i:s');
+
+            if ($this->hasNulls([$id, $title, $author, $content, $date_modification])) {
+                // Si hi ha algun camp que es nul
+                return call('posts', 'error', "Error: s'han d'especificar tots els camps...");
+            }
+            else {
+                // Si tots elscamps tenen dades fem update
+                Post::update($id, $title, $author, $content, $image, $date_modification);
+            }
+        }
+
+        // Borrat d'un post
+        public function delete($id) {
+            if (empty($id)) {
+                return call('posts', 'error', "Error: aquest post no existeix...");
+            }
+
+            // Si eliminem correctament un post
+            if (Post::delete($id)) {
+                // Retornem l'index amb tots els posts
+                header('Location: '.constant('URL')."posts/index");
+            }
+            else {
+                // En cas contrari, error
+                return call('posts', 'error', "Error: el post no s'ha eliminat...");
+            }
+        }
+
         //Comprova si algun dels parametres es nul
         private function hasNulls($request) {
             return in_array(null, $request) || in_array("", $request);
@@ -60,9 +110,7 @@
 
         //Retorna la vista error
         public function error($message) {
-            if ($message) {
-                echo "<div> $message </div>";
-            }
+            if ($message) {echo "<div> $message </div>";}
 
             require_once 'views/posts/error.php';
         }
