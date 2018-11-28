@@ -1,4 +1,8 @@
-<div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../libs/css/estilos.css" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+<div class="container">
     <h2>Nou Post</h2>
     <form action="<?php echo constant('URL'); ?>posts/newPost" method="post" enctype="multipart/form-data">
         <table>
