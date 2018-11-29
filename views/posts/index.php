@@ -1,5 +1,5 @@
 <div class="container">
-    <h3>Llista de posts:</h3>
+    <h1>Llistat de posts:</h1>
     <table>
         <tr>
             <th>Títol</th>
@@ -25,5 +25,5 @@
 </div>
 
 <div class="container">
-    <a href='<?php echo constant('URL'); ?>posts/insert' class="btn btn-primary" role="button">Insertar nou post</a>
+    <a href='<?php echo constant('URL');?>posts/insert' class="btn btn-dark" role="button">Insertar nou post</a>
 </div>

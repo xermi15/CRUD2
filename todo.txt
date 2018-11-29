@@ -1,0 +1,4 @@
+Boto per tornar enrere a totes les vistes
+Solucionar CSS a totes les vistes
+Pagina principal original
+Nou crud

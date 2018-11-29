@@ -3,43 +3,29 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 <div class="container">
-    <h2>Nou Post</h2>
-    <form action="<?php echo constant('URL'); ?>posts/newPost" method="post" enctype="multipart/form-data">
-        <table>
-            <tr>
-                <td>
-                    <b>Titol:</b>
-                </td>
-                <td>
-                    <input type="text" name="title" placeholder="Introdueix el títol">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Autor:</b>
-                </td>
-                <td>
-                    <input type="text" name="author" placeholder="Introdueix l'autor">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Contingut:</b>
-                </td>
-                <td>
-                    <input type="text" name="content" placeholder="Introdueix el contingut del post">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Imatge:</b>
-                </td>
-                <td>
-                    <input type="file" name="image" />
-                </td>
-            </tr>
-        </table>
+    <h1>Nou Post</h1>
+    <form action="<?php echo constant('URL'); ?>posts/newPost" method="post" enctype="multipart/form-data" id="insertForm">
+        <div class="form-group">
+            <label for="exampleInput">Titol:</label>
+            <input type="text" class="form-control" name="title" placeholder="Introdueix el títol">
+        </div>
 
-        <input type="submit" value="Insert">
+        <div class="form-group">
+            <label for="exampleInput">Autor:</label>
+            <input type="text" class="form-control" name="author" placeholder="Introdueix l'autor">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInput">Contingut:</label>
+            <textarea name="content" class="form-control" form="insertForm" rows="10" placeholder="Introdueix el contingut del post"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Imatge:</label>
+            <input type="file" name="image" class="form-control-file">
+
+
+        </div>
+        <button type="submit" value="Insert" class="btn btn-dark">Crear</button>
     </form>
 </div>

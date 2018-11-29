@@ -1,6 +1,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: cadetblue;
+    background-color: #ACAEB1;
 }
 
 table {
@@ -27,5 +27,22 @@ tr:nth-child(even) {
     margin-left: auto;
     margin-bottom: 20px;
     margin-top: 10px;
+}
 
+/*.fool {
+    background-color: #343a40;
+    color: rgba(255,255,255,.75);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}*/
+
+.right {
+    margin-right: 0;
+}
+
+.maxHeight {
+    max-height: 200px;
 }
