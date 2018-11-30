@@ -1,6 +1,8 @@
+<!--
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
 <link rel="stylesheet" href="../../libs/css/estilos.css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+-->
 
 <div class="container">
     <h1>Nou Post</h1>
@@ -26,6 +28,7 @@
 
 
         </div>
-        <button type="submit" value="Insert" class="btn btn-dark">Crear</button>
+        <button type="submit" class="btn btn-dark">Crear</button>
     </form>
+    <hr>
 </div>

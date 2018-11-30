@@ -11,13 +11,13 @@
 
     <!-- our custom CSS -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="../libs/css/estilos.css">
+    <link rel="stylesheet" href="<?php echo constant('URL'); ?>libs/css/estilos.css">
   </head>
 
   <body>
     <header>
 
-      <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <nav class="navbar navbar-expand navbar-dark bg-dark sticky-top">
         <a class="navbar-brand" href="<?php echo constant('URL'); ?>">MVC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -41,16 +41,8 @@
 
     <?php require_once('routes.php'); ?>
 
-   <footer>
-        <div style="background-color: #343a40;
-                    color: rgba(255,255,255,.75);
-                    position: absolute;
-                    bottom: 0;
-                    width: 100%;
-                    height: 30px;
-                    line-height: 30px;">
-                        by xermi15 - v0.5.2
-        </div>
+   <footer class="footer">
+        <div>by xermi15 - v0.5.3</div>
    </footer>
 
   </body>

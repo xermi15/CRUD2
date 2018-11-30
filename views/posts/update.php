@@ -1,6 +1,8 @@
+<!--
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
 <link rel="stylesheet" href="../../libs/css/estilos.css" />
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+-->
 
 <div class="container">
     <h1>Modificar Post <?php echo $post->id; ?></h1>
@@ -33,4 +35,5 @@
         </div>
     <button type="submit" value="Update" class="btn btn-dark">Modificar</button>
 </form>
+<hr>
 </div>

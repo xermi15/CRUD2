@@ -27,3 +27,4 @@
 <div class="container">
     <a href='<?php echo constant('URL');?>posts/insert' class="btn btn-dark" role="button">Insertar nou post</a>
 </div>
+<hr>
