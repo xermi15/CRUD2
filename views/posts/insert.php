@@ -1,12 +1,7 @@
-<!--
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-<link rel="stylesheet" href="../../libs/css/estilos.css" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
--->
-
 <div class="container">
     <h1>Nou Post</h1>
     <form action="<?php echo constant('URL'); ?>posts/newPost" method="post" enctype="multipart/form-data" id="insertForm">
+
         <div class="form-group">
             <label for="exampleInput">Titol:</label>
             <input type="text" class="form-control" name="title" placeholder="Introdueix el títol">

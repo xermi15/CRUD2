@@ -31,7 +31,7 @@
               <a class="nav-link" href="<?php echo constant('URL'); ?>posts/index">Posts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <a class="nav-link" href="<?php echo constant('URL'); ?>headphones/index">Auriculars</a>
             </li>
           </ul>
         </div>
@@ -42,7 +42,7 @@
     <?php require_once('routes.php'); ?>
 
    <footer class="footer">
-        <div>by xermi15 - v0.5.3</div>
+        <div>by xermi15 - v0.6.0</div>
    </footer>
 
   </body>

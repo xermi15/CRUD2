@@ -1,34 +1,30 @@
 <?php
-class Post {
+class Headphone {
 
     // definimos tres atributos
     // los declaramos como públicos para acceder directamente $post->author
     public $id;
-    public $author;
-    public $title;
-    public $content;
+    public $name;
+    public $type;
+    public $date_launch;
     public $image;
-    public $date_create;
-    public $date_modification;
 
-    public function __construct($id, $author, $title, $content, $image, $date_create, $date_modification) {
+    public function __construct($id, $name, $type, $date_launch, $image) {
         $this->id = $id;
-        $this->author = $author;
-        $this->title = $title;
-        $this->content = $content;
+        $this->name = $name;
+        $this->type = $type;
+        $this->date_launch = $date_launch;
         $this->image = $image;
-        $this->date_create = $date_create;
-        $this->date_modification = $date_modification;
     }
 
     public static function all() {
         $list = [];
         $db = Db::getInstance();
-        $req = $db->query('SELECT * FROM posts');
+        $req = $db->query('SELECT * FROM headphones');
 
         // creamos una lista de objectos post y recorremos la respuesta de la consulta
-        foreach($req->fetchAll() as $post) {
-            $list[] = new Post($post['id'], $post['author'], $post['title'],$post['content'], $post['image'], $post['date_create'], $post['date_modification']);
+        foreach($req->fetchAll() as $headphone) {
+            $list[] = new Headphone($headphone['id'], $headphone['name'], $headphone['type'],$headphone['date_launch'], $headphone['image']);
         }
         return $list;
     }
@@ -38,84 +34,79 @@ class Post {
 
         // nos aseguramos que $id es un entero
         $id = intval($id);
-        $req = $db->prepare('SELECT * FROM posts WHERE id = :id');
+        $req = $db->prepare('SELECT * FROM headphones WHERE id = :id');
 
         // preparamos la sentencia y reemplazamos :id con el valor de $id
         $req->execute(array('id' => $id));
-        $post = $req->fetch();
+        $headphone = $req->fetch();
 
-        return new Post($post['id'], $post['author'], $post['title'],$post['content'], $post['image'], $post['date_create'], $post['date_modification']);
+        return new Headphone($headphone['id'], $headphone['name'], $headphone['type'],$headphone['date_launch'], $headphone['image']);
     }
 
-    public static function insert($title, $author, $content, $image, $date_create, $date_modification) {
+    public static function insert($name, $type, $date_launch, $image) {
         $db = Db::getInstance();
-        $req = $db->prepare('INSERT INTO posts SET author = :author, title = :title, content = :content, image = :image, date_create = :date_create, date_modification = :date_modification');
+        $req = $db->prepare('INSERT INTO headphones SET name = :name, type = :type, date_launch = :date_launch, image = :image');
         $data = array(
-            ":author" => htmlspecialchars(strip_tags($author)),
-            ":title" => htmlspecialchars(strip_tags($title)),
-            ":content" => htmlspecialchars(strip_tags($content)),
-            ":image" => htmlspecialchars(strip_tags($image)),
-            ":date_create" => htmlspecialchars(strip_tags($date_create)),
-            ":date_modification" => htmlspecialchars(strip_tags($date_modification))
+            ":name" => htmlspecialchars(strip_tags($name)),
+            ":type" => htmlspecialchars(strip_tags($type)),
+            ":date_launch" => htmlspecialchars(strip_tags($date_launch)),
+            ":image" => htmlspecialchars(strip_tags($image))
         );
 
         if ($req->execute($data)){
             // Inserció correcta
-            Post::uploadImage($image);
-            header('Location: '.constant('URL')."posts/insert/success");
+            Headphone::uploadImage($image);
+            header('Location: '.constant('URL')."headphones/insert/success");
         } else {
             // Error a l'insertar
-            header('Location: '.constant('URL')."posts/insert/error");
+            header('Location: '.constant('URL')."headphones/insert/error");
         }
     }
 
-    public static function update($id, $title, $author, $content, $image, $date_modification) {
+    public static function update($id, $name, $type, $date_launch, $image) {
         $db = Db::getInstance();
 
-        //En el cas de que no canviem la imatge del post
+        //En el cas de que no canviem la imatge del auricular
         if (empty($image)) {
-            $req = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, date_modification = :date_modification WHERE id = :id');
+            $req = $db->prepare('UPDATE headphones SET name = :name, type = :type, date_launch = :date_launch, image = :image WHERE id = :id');
             $data = array(
                 ":id" => htmlspecialchars(strip_tags($id)),
-                ":title" => htmlspecialchars(strip_tags($title)),
-                ":author" => htmlspecialchars(strip_tags($author)),
-                ":content" => htmlspecialchars(strip_tags($content)),
-                ":date_modification" => htmlspecialchars(strip_tags($date_modification))
+                ":name" => htmlspecialchars(strip_tags($name)),
+                ":type" => htmlspecialchars(strip_tags($type)),
+                ":date_launch" => htmlspecialchars(strip_tags($date_launch))
             );
 
             if($req->execute($data)){
                 // Actualització correcte
-                header('Location: '.constant('URL')."posts/index");
+                header('Location: '.constant('URL')."headphones/index");
             }else{
                 // Error en actualitzzar
-                return call('posts', 'error', "Error: no s'ha pogut actualitzar el post...");
+                return call('headphones', 'error', "Error: no s'ha pogut actualitzar l'auricular...");
             }
         }
         else {
-            $req = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, image = :image, date_modification = :date_modification WHERE id = :id');
+            $req = $db->prepare('UPDATE headphones SET name = :name, type = :type, date_launch = :date_launch, image = :image WHERE id = :id');
             $data = array(
                 ":id" => htmlspecialchars(strip_tags($id)),
-                ":title" => htmlspecialchars(strip_tags($title)),
-                ":author" => htmlspecialchars(strip_tags($author)),
-                ":content" => htmlspecialchars(strip_tags($content)),
-                ":image" => htmlspecialchars(strip_tags($image)),
-                ":date_modification" => htmlspecialchars(strip_tags($date_modification))
+                ":name" => htmlspecialchars(strip_tags($name)),
+                ":type" => htmlspecialchars(strip_tags($type)),
+                ":date_launch" => htmlspecialchars(strip_tags($date_launch))
             );
 
             if($req->execute($data)){
                 // Actualització correcte
-                Post::uploadImage($image);
-                header('Location: '.constant('URL')."posts/index");
+                Headphone::uploadImage($image);
+                header('Location: '.constant('URL')."headphones/index");
             }else{
                 // Error en actualitzzar
-                return call('posts', 'error', "Error: no s'ha pogut actualitzar el post..");
+                return call('headphones', 'error', "Error: no s'ha pogut actualitzar l'auricular..");
             }
         }
     }
 
     public static function delete($id) {
         $db = Db::getInstance();
-        $req = $db->prepare('DELETE FROM posts WHERE id = :id');
+        $req = $db->prepare('DELETE FROM headphones WHERE id = :id');
         $data = array(":id" => htmlspecialchars(strip_tags($id)));
         return $req->execute($data);
     }
@@ -124,7 +115,7 @@ class Post {
         if($image){
 
             //Fem servir la funcio sha1_file() per assignar un nom d'arxiu unic
-            $target_directory = "uploads/";
+            $target_directory = "uploadsHP/";
             $target_file = $target_directory . $image;
             $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
 

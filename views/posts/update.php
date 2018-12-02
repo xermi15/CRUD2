@@ -1,9 +1,3 @@
-<!--
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-<link rel="stylesheet" href="../../libs/css/estilos.css" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
--->
-
 <div class="container">
     <h1>Modificar Post <?php echo $post->id; ?></h1>
     <form action="<?php echo constant('URL'); ?>posts/updatePost" method="post" enctype="multipart/form-data" id="updateForm">

@@ -8,9 +8,7 @@
         }
 
         public function show($id) {
-            // esperamos una url del tipo ?controller=posts&action=show&id=x
             // si no nos pasan el id redirecionamos hacia la pagina de error,
-            // el id tenemos que buscarlo en la BBDD
             if (empty($id)) {
                 return call('pages', 'error', null);
             }
@@ -34,7 +32,8 @@
             require_once 'views/posts/insert.php';
         }
 
-        //Inserta el nou post a la base de dades
+        //Agafa per POST els valors i els hi assigna a variables, que finalment les hi passa al
+        //metode insertar del model Post
         public function newPost() {
             $title = $_POST["title"];
             $author = $_POST["author"];
